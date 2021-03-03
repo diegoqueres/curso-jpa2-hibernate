@@ -3,6 +3,7 @@ package br.com.alura.jdbc.modelo;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Movimentacao {
@@ -15,6 +16,9 @@ public class Movimentacao {
     private LocalDateTime data;
     private BigDecimal valor;
     private String descricao;
+
+    @ManyToMany
+    private List<Categoria> categorias;
 
     @ManyToOne
     private Conta conta;
@@ -65,5 +69,13 @@ public class Movimentacao {
 
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 }
